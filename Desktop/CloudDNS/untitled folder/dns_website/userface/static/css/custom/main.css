@@ -1,0 +1,46 @@
+.btn {
+  font-size: 1.15em;
+}
+
+.clear-filter[filter-color=pink-blue] {
+  background: rgba(0,38,160,.2);
+  background: linear-gradient(0deg,rgba(255,5,155,.2),rgba(0,38,160,.6));
+}
+
+[data-background-color=pink-blue] {
+  background-color: rgba(0,38,160,.9) !important;
+  background: linear-gradient(-45deg,rgba(255,5,155,.9),rgba(120,107,233,.9));
+}
+
+.btn-pink-blue {
+  background-color: rgba(120,107,233,1);
+  margin: 20px 0px 50px 0px;
+}
+
+.card {
+  border-radius: 8px;
+  position: relative;
+  margin-bottom: 10px;
+}
+
+.btn-pink-blue:hover, .btn-pink-blue:focus, .btn-pink-blue:active, .btn-pink-blue:hover:active {
+  background-color: rgba(255,5,155,1);
+}
+
+.title {
+  font-weight: normal;
+  text-align: center;
+}
+
+.col-form-contact {
+  padding: 0;
+}
+
+.img-raised {
+  box-shadow: 0 5px 20px 0 rgba(0,0,0,.3);
+}
+
+.copyright {
+  width: 100%;
+  text-align: center!important;
+}

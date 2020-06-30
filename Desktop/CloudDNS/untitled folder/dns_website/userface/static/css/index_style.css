@@ -1,0 +1,225 @@
+.button {
+      background-color: #39D2B4; /* Green */
+      border: none;
+      color: white;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 18px;
+      margin: 4px 2px;
+      -webkit-transition-duration: 0.4s; /* Safari */
+      transition-duration: 0.4s;
+      cursor: pointer;
+}
+.button1 {
+      background-color: white;
+      color: black;
+      border: 2px solid #39D2B4;
+}
+.button1:hover {
+      background-color: #39D2B4;
+      color: white;
+}
+.drop_zone_style {
+    border: 2px solid #39D2B4;
+    width:  200px;
+    height: 75px;
+    border-radius: 4px;
+    margin:0 auto;
+}
+
+* {
+	 font-family: 'Roboto', sans-serif;
+}
+ .container {
+	 width: 130px;
+	 height: 40px;
+	 text-align: center;
+}
+ .smooth_button {
+	 outline: none;
+	 height: 40px;
+	 text-align: center;
+	 width: 130px;
+	 background: #fff;
+	 color: white;
+	 letter-spacing: 1px;
+	 text-shadow: 0;
+	 font-size: 12px;
+	 font-weight: bold;
+	 cursor: pointer;
+   border-style: none;
+   background: #39D2B4;
+	 transition: all 0.25s ease;
+}
+ .smooth_button:hover {
+	 color: #39D2B4;
+	 background: #34495E;
+}
+ .smooth_button:active {
+	 letter-spacing: 2px;
+}
+ .upload_button:after {
+	 content: "UPLOAD";
+}
+  .download_button:after {
+    content: "DOWNLOAD"
+}
+ .onclic {
+   border-style: solid;
+	 width: 40px;
+   border-radius: 40px;
+	 border-color: white;
+	 border-width: 3px;
+	 font-size: 0;
+	 border-left-color: #34495E;
+	 animation: rotating 2s 0.25s linear infinite;
+}
+ .onclic:after {
+	 content: "";
+}
+ .onclic:hover {
+	 color: #39D2B4;
+	 background: #39D2B4;
+}
+ .validate {
+	 font-size: 13px;
+	 color: white;
+	 background: #39D2B4;
+}
+ .validate:after {
+	 font-size: large;
+	 content: "\2713";
+}
+ @keyframes rotating {
+	 from {
+		 transform: rotate(0deg);
+	}
+	 to {
+		 transform: rotate(360deg);
+	}
+}
+
+.input-file-container {
+  cursor: pointer;
+  font-weight: bold;
+  position: relative;
+  margin: 0 auto;
+  width: 130px
+}
+.js .input-file-trigger {
+  cursor: pointer;
+  display: block;
+  padding: 14px;
+  background: #39D2B4;
+  color: #fff;
+  font-size: 1em;
+  transition: all .4s;
+}
+.js .input-file {
+  position: absolute;
+  top: 0; left: 0;
+  opacity: 0;
+  width:1px
+}
+.js .input-file:hover + .input-file-trigger,
+.js .input-file:focus + .input-file-trigger,
+.js .input-file-trigger:hover,
+.js .input-file-trigger:focus {
+  background: #34495E;
+  color: #39D2B4;
+}
+
+.file-return {
+  margin: 0;
+}
+.file-return:not(:empty) {
+  margin: 1em 0;
+}
+.js .file-return {
+  font-style: italic;
+  font-size: .9em;
+  font-weight: bold;
+}
+.js .file-return:not(:empty):before {
+  content: "Selected file: ";
+  font-style: normal;
+  font-weight: normal;
+}
+
+
+/* Useless styles, just for demo styles */
+
+body {
+  font-family: "Open sans", "Segoe UI", "Segoe WP", Helvetica, Arial, sans-serif;
+  color: #7F8C9A;
+  background: #FCFDFD;
+}
+h1, h2 {
+  margin-bottom: 5px;
+  font-weight: normal;
+  text-align: center;
+  color:#aaa;
+}
+h2 {
+  margin: 5px 0 2em;
+  color: #39D2B4;
+}
+form {
+  margin: 0 auto;
+  text-align:center;
+}
+h2 + P {
+  text-align: center;
+}
+.txtcenter {
+  margin-top: 4em;
+  font-size: .9em;
+  text-align: center;
+  color: #aaa;
+}
+.copy {
+  margin-top: 2em;
+}
+.copy a {
+  text-decoration: none;
+  color: #39D2B4;
+}
+
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,600);
+
+
+table {
+  background: #39D2B4;
+  border-collapse: collapse;
+  margin: 1em;
+}
+
+th {
+  border-bottom: 1px solid #fff;
+  background: #34495E;
+  color: #39D2B4;
+  font-weight: 400;
+  padding: 0.5em 1em;
+  text-align: left;
+}
+
+.clickable {
+  cursor: pointer;
+}
+
+td {
+  color: #fff;
+  font-weight: 400;
+  padding: 0.65em 1em;
+}
+
+
+.disabled td {
+  color: #4F5F64;
+}
+
+tbody tr:hover {
+  background: #34495E;
+  color: #39D2B4;
+}

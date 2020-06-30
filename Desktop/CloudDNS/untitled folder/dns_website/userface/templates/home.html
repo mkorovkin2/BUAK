@@ -1,0 +1,48 @@
+<html>
+	{% load static %}
+	<link rel="stylesheet" href="{% static 'css/custom/index_style.css' %}">
+
+	<!-- Header information -->
+	<head>
+		<meta charset="utf-8" />
+		<title>RouterCloud - Home</title>
+		<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+		<meta name="viewport" content="width=device-width" />
+
+		<!-- Fonts -->
+		<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
+
+		<!-- Bootstrap core CSS - USED SOME GUY'S STYLE SHEETS BC THEY LOOK NICE -->
+		<link rel="stylesheet" href="https://cdn.rawgit.com/creativetimofficial/now-ui-kit/2e8e665f/assets/css/bootstrap.min.css">
+		<link href="https://cdn.rawgit.com/creativetimofficial/now-ui-kit/2e8e665f/assets/css/now-ui-kit.min.css?v1.2.0" rel="stylesheet"/>
+		<link href="https://cdn.rawgit.com/creativetimofficial/now-ui-kit/2e8e665f/assets/demo/demo.css" rel="stylesheet">
+		<link href="{% static 'css/custom/main.css' %}" rel="stylesheet" type="text/css">
+	</head>
+
+	<body>
+    	<div class="page-header clear-filter" filter-color="pink-blue">
+			<div class="container">
+				<div class="content-center brand">
+					<h1 class="h1-seo">RouterCloud</h1>
+					<h4>Cloud storage through DNS caching</h4>
+					<br>
+					<span>
+						<button class="btn btn-pink-blue img-raised" data-toggle="modal" onclick="location.href={% url 'dashboard' %}" onclick="{% urls % 'dashboard'}">Continue to dashboard</button>
+					</span>
+				</div>
+			</div>
+		</div>
+
+		<div class="main">
+			<footer class="footer" data-background-color="pink-blue">
+				<div class="container">
+					<div class="copyright">
+						For inquiries contact us at <a href="mailto:contact@routercloud.com">contact@routercloud.com</a>
+						<br>
+						RouterCloud LLC &copy; <script>document.write(new Date().getFullYear());</script>
+					</div>
+				</div>
+			</footer>
+		</div>
+	</body>
+</html>

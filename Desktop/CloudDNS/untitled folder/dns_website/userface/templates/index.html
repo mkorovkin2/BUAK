@@ -1,0 +1,267 @@
+<html>
+	{% load static %}
+   <link rel="stylesheet" href="{% static 'css/index_style.css' %}">
+	 <style>
+	 .center {
+		 margin:0 auto; padding-top: 2%; padding-bottom: 2%;
+	 }
+	 </style>
+	 <div style="max-width: 500px; margin:0 auto;">
+	   <body bgcolor = "#fff" style="text-align: center">
+	      <div>
+	         <h1 style="
+	            font-family: 'RobotoDraft', sans-serif;
+	            font-size: 28px;;
+	            color: #000;
+	            margin: 4px 2px;
+	            margin-bottom: 12px;
+	            border-color: #39D2B4;">
+	            RouterCloud Dashboard
+	         </h1>
+	      </div>
+	      <div>
+	         <p style="font-family: 'RobotoDraft', sans-serif;
+	            font-size: 14px;;
+	            color: #000;
+	            margin: 4px 2px;
+	            border-color: #39D2B4;
+	            margin-bottom: 4%;">
+	            Welcome back!
+	         </p>
+	      </div>
+
+			<div id="drop_zone" ondrop="dropHandler(event);" ondragover="dragOverHandler(event);" class="drop_zone_style">
+				<p style="color: #39D2B4; font-weight: bold;">
+					Drag one or more files to this Drop Zone...
+				</p>
+			</div>
+			<div class="container center">
+				<button class="smooth_button center upload_button"; id="smooth_button"; type="submit"></button>
+			</div>
+		   </body>
+
+	   <hr	<hr style="margin: 0 0 10px 0;">
+
+	   <script>
+
+	      function dropHandler(ev) {
+	        console.log('File(s) dropped');
+
+	        // Prevent default behavior (Prevent file from being opened)
+	        ev.preventDefault();
+
+	        if (ev.dataTransfer.items) {
+	          // Use DataTransferItemList interface to access the file(s)
+	          for (var i = 0; i < ev.dataTransfer.items.length; i++) {
+	            // If dropped items aren't files, reject them
+	            if (ev.dataTransfer.items[i].kind === 'file') {
+	              var file = ev.dataTransfer.items[i].getAsFile();
+	              console.log('... file[' + i + '].name = ' + file.name);
+	              //alert(file.)
+	              //alert("Filename=" + file.name)
+
+	              uploadFile(file);
+
+	            }
+	          }
+	        } else {
+	          // Use DataTransfer interface to access the file(s)
+	          for (var i = 0; i < ev.dataTransfer.files.length; i++) {
+	            console.log('... file[' + i + '].name = ' + ev.dataTransfer.files[i].name);
+	          }
+	        }
+	      }
+
+	      function dragOverHandler(ev) {
+	        console.log('File(s) in drop zone');
+
+	        // Prevent default behavior (Prevent file from being opened)
+	        ev.preventDefault();
+	      }
+
+	   </script>
+
+	   <div id="list_of_cached_files_div"></div>
+
+	   <!-- <button id="get_list_of_cached_files_button">Get list of locally-cached files</button> -->
+
+	<!-- run backend code -->
+	    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+	    <script type="text/javascript">
+
+	      /*$('#smooth_button').click(function(){
+	        $('#wait_div').show();
+	        // var catid;
+	        // catid = $(this).attr("id");
+	        var variable;
+	        variable = 'large.txt'; //this should be the path to the file/dir to upload, set it to this as a test
+	        // alert(zinor)
+	        $.ajax(
+	          {
+	              type:"GET",
+	              url: "/run_query",
+	              data:{
+	                       // post_id: catid,
+	                       run_backend_code: variable
+	              },
+	              success: function(data)
+	              {
+	                  var html_output = "";
+	                  cleaned_data = JSON.parse(data);
+
+	                  html_output = "<p>" + cleaned_data[0]['backend_response'].replace(/\n/g, "<br>") + "</p>";
+	                  $("#backend_response_console_div").html(html_output);
+	                  $('#wait_div').hide();
+	              },
+	              error: function(data)
+	              {
+	                cleaned_data = JSON.parse(data);
+	                $('#wait_div').html('<p>' + cleaned_data + '</p>');
+	              }
+	           }
+	         );
+	      });*/
+
+	      $('#get_list_of_cached_files_button').click(function(){
+	        $('#list_of_cached_files_div').html("<p>Loading...</p>");
+
+	        var variable = 'input';
+
+	        $.ajax(
+	          {
+	              type:"GET",
+	              url: "/get_list_of_cached_files",
+	              data:{
+	                       run_backend_code: variable
+	              },
+	              success: function(data)
+	              {
+	                  var html_output = "";
+	                  cleaned_data = JSON.parse(data);
+
+	                  html_output = "<p>" + cleaned_data[0]['backend_response'].replace(/\n/g, "<br>") + "</p>";
+	                  $("#list_of_cached_files_div").html(html_output);
+	                  //$('#wait_div').hide();
+	              },
+	              error: function(data)
+	              {
+	                //cleaned_data = JSON.parse(data);
+	                $('#list_of_cached_files_div').html('<p>*** Error ***</p>');
+	              }
+	           }
+	         );
+	      });
+
+	    </script>
+
+	    {% block content %}
+	      <form method="post" action="file_upload/" enctype="multipart/form-data" onsubmit="setTimeout(function () { window.location.reload(); }, 1500)">
+	        {% csrf_token %}
+					<div class="input-file-container">
+				    <input class="input-file" id="my-file" type="file" name="file">
+				    <label tabindex="0" for="my-file" class="input-file-trigger" style="font-size: 13px;">FILE</label>
+				  </div>
+					<p class="file-return" style="margin: 10 0 0 0;"></p>
+					<div class="container center">
+	 			   <button class="smooth_button center upload_button"; id="smooth_button"; type="submit"></button>
+	 			 </div>
+	      </form>
+
+	      <!-- {% if uploaded_file_url %}
+	        <p>File uploaded at: <a href="{{ uploaded_file_url }}">{{ uploaded_file_url }}</a></p>
+	      {% endif %} -->
+
+	      <!--<p><a href="{% url 'home' %}">Return to home</a></p>-->
+	    {% endblock %}
+
+	<!-- THIS IS TESTING FOR FILE DOWNLOADING -->
+	<hr style="margin: 0 0 10px 0;">
+	<!-- <form method="POST" action="file_download/">
+		{% csrf_token %}
+		<input type="text" name="textfield">
+		<div class="container center">
+			<button class="smooth_button center download_button"; id="smooth_button"; type="submit";></button>
+		</div>
+	</form> -->
+	<!-- THIS IS THE CONSOLE LOG SO WE CAN EASILY TRACK STUFF -->
+	  <!-- <div id="wait_div"; class="center">
+	    <p>Loading...<br><i>Please wait.</i></p>
+	  </div> -->
+
+	  <!-- <div class="center">
+	    <h3>Console</h3>
+	    <div id="backend_response_console_div" style="background-color: #39D2B4"></div>
+	  </div> -->
+		<div class="center">
+	    <h3>Uploaded Files:</h3>
+	    <div id="backend_response_console_div" style="background-color: #39D2B4"></div>
+	  </div>
+
+	  <script>
+	    $('#wait_div').hide();
+	  </script>
+	</div>
+	<script src="{% static 'js/jquery-3.5.1.min.js' %}"></script>
+	<script src="{% static 'js/example.js' %}"></script>
+<!--
+   ******* DISCARD *******
+
+<button
+   style="width: 20%;
+   height: 8%;
+   font-family: 'RobotoDraft', sans-serif;"
+   class="button button1"
+   type="submit"
+   value="Button">Button</button>
+-->
+<<<<<<< HEAD
+{% for item in objs %}
+	 <tr>
+				<td>{{ item.filename }}</td>
+	 </tr>
+			{% endfor %}
+
+=======
+
+<form class="form_download" method="POST" action="file_download/">
+	{% csrf_token %}
+	<table class="center">
+	  <thead>
+	    <tr>
+	      <th>File Name
+				<th>Date Uploaded
+				<th>TXT Record Count
+			</tr>
+	  </thead>
+	  <tbody>
+			{% for item in objs %}
+				<tr class="sudmit_download clickable" type="submit" filename={{item.filename}}>
+					<input type="hidden" name="textfield" value="NONE">
+					<td>{{ item.filename }}</td>
+					<td>{{ item.date.date }}</td>
+					<td>{{ item.record_count }}</td>
+				</tr>
+<<<<<<< HEAD
+		 </form>
+		{% endfor %}
+  </tbody>
+</table>
+<<<<<<< HEAD
+>>>>>>> ebe4e5f3d370d76ee905f8807e5cc9e61a155b72
+=======
+=======
+			{% endfor %}
+	  </tbody>
+	</table>
+</form>
+
+>>>>>>> 2b31b621a09e5e1f65302e64c8437761673b2d84
+<script>
+	$( ".sudmit_download" ).click(function() {
+		console.log($(".sudmit_download").find("input").length)
+		$(".sudmit_download").find("input").val($(this).attr("filename"));
+	  $( ".form_download" ).submit();
+	});
+</script>
+>>>>>>> d3d2ae1c8e8953af538a4be230b5a08846dd79ba
+</html>
